@@ -2,7 +2,7 @@ import numpy as np
 
 
 class QAgent:
-    def __init__(self, states, actions, qtable=None, exploration_ratio=0.1, learning_rate=0.2, discount_factor=0.9):
+    def __init__(self, n_states, actions, qtable=None, exploration_ratio=0.1, learning_rate=0.2, discount_factor=0.9):
         # Set parameters of the agent
         self.exploration_ratio = exploration_ratio
         self.learning_rate = learning_rate
@@ -13,7 +13,7 @@ class QAgent:
         if qtable is not None:
             self.qtable = qtable
         else:
-            self.qtable = np.zeros((states.n, actions.n))
+            self.qtable = np.zeros((n_states, actions.n))
 
     def get_next_step(self, state):
         # Exploration
