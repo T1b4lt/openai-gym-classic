@@ -1,9 +1,11 @@
 class Discretizator:
     def __init__(self, low, high, bins_pos, bins_vel):
-        self.pos_min_value = low[0]
-        self.pos_max_value = high[0]
-        self.vel_min_value = low[1]
-        self.vel_max_value = high[1]
+        self.abs_pos = abs(low[0])
+        self.abs_vel = abs(low[1])
+        self.pos_min_value = low[0] + self.abs_pos
+        self.pos_max_value = high[0] + self.abs_pos
+        self.vel_min_value = low[1] + self.abs_vel
+        self.vel_max_value = high[1] + self.abs_vel
         self.pos_n_bins = bins_pos
         self.vel_n_bins = bins_vel
         self.pos_bin_size = (self.pos_max_value -
@@ -15,8 +17,8 @@ class Discretizator:
         return self.pos_n_bins * self.vel_n_bins
 
     def idx_state(self, state):
-        value_pos = state[0]
-        value_vel = state[1]
+        value_pos = state[0] + self.abs_pos
+        value_vel = state[1] + self.abs_vel
         idx_pos = self.discretize_pos(value_pos)
         idx_vel = self.discretize_vel(value_vel)
         return idx_pos * self.vel_n_bins + idx_vel
