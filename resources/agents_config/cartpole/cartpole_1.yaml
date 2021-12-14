@@ -1,0 +1,12 @@
+config_name: "cartpole_1.yaml"
+n_episodes: 20000
+n_steps: 200
+exploration_ratio: 0.8
+learning_rate: 0.6
+discount_factor: 0.9
+bins_1: 25
+bins_2: 25
+bins_3: 25
+bins_4: 25
+render: False
+report_file: False
