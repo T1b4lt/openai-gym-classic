@@ -16,8 +16,8 @@ def main(args):
     EXPLORATION_RATIO = config['exploration_ratio']
     LEARNING_RATE = config['learning_rate']
     DISCOUNT_FACTOR = config['discount_factor']
-    DISCRETIZATION_POS = config['discretization_pos']
-    DISCRETIZATION_VEL = config['discretization_vel']
+    BINS_POS = config['bins_pos']
+    BINS_VEL = config['bins_vel']
     RENDER = config['render']
     REPORT_FILE = config['report_file']
 
@@ -37,7 +37,7 @@ def main(args):
     hist = {}
 
     discretizator = Discretizator(
-        env.observation_space.low, env.observation_space.high, DISCRETIZATION_POS, DISCRETIZATION_VEL)
+        env.observation_space.low, env.observation_space.high, bins_array=[BINS_POS, BINS_VEL])
 
     agent = QAgent(discretizator.n_states(), env.action_space, exploration_ratio=EXPLORATION_RATIO,
                    learning_rate=LEARNING_RATE, discount_factor=DISCOUNT_FACTOR)
