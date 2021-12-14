@@ -1,38 +1,27 @@
+import numpy as np
+
+
 class Discretizator:
-    def __init__(self, low, high, bins_pos, bins_vel):
-        self.pos_min_value = low[0]
-        self.pos_max_value = high[0]
-        self.vel_min_value = low[1]
-        self.vel_max_value = high[1]
-        self.pos_n_bins = bins_pos
-        self.vel_n_bins = bins_vel
-        self.pos_bin_size = (self.pos_max_value -
-                             self.pos_min_value) / self.pos_n_bins
-        self.vel_bin_size = (self.vel_max_value -
-                             self.vel_min_value) / self.vel_n_bins
+    def __init__(self, low_array, high_array, bins_array):
+        self.low_array = np.array(low_array)
+        self.high_array = np.array(high_array)
+        self.bins_array = np.array(bins_array)
+        self.bin_size_array = (
+            self.high_array - self.low_array) / self.bins_array
 
     def n_states(self):
-        return self.pos_n_bins * self.vel_n_bins
+        return np.prod(self.bins_array)
 
     def idx_state(self, state):
-        value_pos = state[0]
-        value_vel = state[1]
-        idx_pos = self.discretize_pos(value_pos)
-        idx_vel = self.discretize_vel(value_vel)
-        return idx_pos * self.vel_n_bins + idx_vel
+        value_array = []
+        for i in range(len(state)):
+            value_array.append(self.discretize_value(state[i], i))
+        return np.ravel_multi_index(value_array, self.bins_array)
 
-    def discretize_pos(self, value):
-        if value < self.pos_min_value:
+    def discretize_value(self, value, i):
+        if value < self.low_array[i]:
             return 0
-        elif value > self.pos_max_value:
-            return self.pos_n_bins - 1
+        elif value >= self.high_array[i]:
+            return self.bins_array[i] - 1
         else:
-            return int((value - self.pos_min_value) / self.pos_bin_size)
-
-    def discretize_vel(self, value):
-        if value < self.vel_min_value:
-            return 0
-        elif value > self.vel_max_value:
-            return self.vel_n_bins - 1
-        else:
-            return int((value - self.vel_min_value) / self.vel_bin_size)
+            return int((value - self.low_array[i]) / self.bin_size_array[i])
