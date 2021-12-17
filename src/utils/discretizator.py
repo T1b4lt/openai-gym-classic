@@ -9,7 +9,7 @@ class Discretizator:
         self.bin_size_array = (
             self.high_array - self.low_array) / self.bins_array
 
-    def n_states(self):
+    def get_n_states(self):
         return np.prod(self.bins_array)
 
     def idx_state(self, state):

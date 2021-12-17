@@ -43,7 +43,7 @@ def main(args):
     discretizator = Discretizator(
         env.observation_space.low, env.observation_space.high, bins_array=[BINS_1, BINS_2, BINS_3, BINS_4])
 
-    agent = QAgent(discretizator.n_states(), env.action_space, exploration_ratio=EXPLORATION_RATIO,
+    agent = QAgent(discretizator.get_n_states(), env.action_space, exploration_ratio=EXPLORATION_RATIO,
                    learning_rate=LEARNING_RATE, discount_factor=DISCOUNT_FACTOR, e_decay_limit=E_DECAY_LIMIT, e_decay_rate=E_DECAY_RATE)
 
     print("\n\n############### Ini Training ###############\n")
