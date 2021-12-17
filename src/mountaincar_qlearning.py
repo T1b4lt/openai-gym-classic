@@ -16,6 +16,8 @@ def main(args):
     EXPLORATION_RATIO = config['exploration_ratio']
     LEARNING_RATE = config['learning_rate']
     DISCOUNT_FACTOR = config['discount_factor']
+    E_DECAY_LIMIT = config['e_decay_limit']
+    E_DECAY_RATE = config['e_decay_rate']
     BINS_POS = config['bins_pos']
     BINS_VEL = config['bins_vel']
     RENDER = config['render']
@@ -40,7 +42,7 @@ def main(args):
         env.observation_space.low, env.observation_space.high, bins_array=[BINS_POS, BINS_VEL])
 
     agent = QAgent(discretizator.n_states(), env.action_space, exploration_ratio=EXPLORATION_RATIO,
-                   learning_rate=LEARNING_RATE, discount_factor=DISCOUNT_FACTOR)
+                   learning_rate=LEARNING_RATE, discount_factor=DISCOUNT_FACTOR, e_decay_limit=E_DECAY_LIMIT, e_decay_rate=E_DECAY_RATE)
 
     print("\n\n############### Ini Training ###############\n")
     for i_episode in range(N_EPISODES):
