@@ -35,7 +35,7 @@ def main(args):
     env = gym.make('CartPole-v1')
 
     # TODO: Tengo que ver cuales son los nombres de las acciones
-    actions_dict = {0: 'Zero', 1: 'One'}
+    actions_dict = {0: 'Left', 1: 'Right'}
     hist = {}
 
     discretizator = Discretizator(
