@@ -5,7 +5,7 @@ bins_vel: 100
 
 # TRAINING
 n_episodes: 8000
-n_steps: 200
+n_steps: 1000
 exploration_ratio: 0.8
 learning_rate: 0.9
 discount_factor: 0.9

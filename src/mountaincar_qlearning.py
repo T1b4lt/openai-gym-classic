@@ -33,6 +33,7 @@ def main(args):
     print("\n############################################\n")
 
     env = gym.make('MountainCar-v0')
+    env._max_episode_steps = N_STEPS
 
     # TODO: Tengo que ver cuales son los nombres de las acciones
     actions_dict = {0: 'Zero', 1: 'One', 2: 'Two'}
