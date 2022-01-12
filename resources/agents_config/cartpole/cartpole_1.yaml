@@ -1,16 +1,16 @@
 # ENV
 config_name: "cartpole_1.yaml"
-bins_1: 25
-bins_2: 25
-bins_3: 25
-bins_4: 25
+bins_1: 10
+bins_2: 10
+bins_3: 10
+bins_4: 10
 
 # TRAINING
-n_episodes: 20000
-n_steps: 200
+n_episodes: 5000
+n_steps: 1000
 exploration_ratio: 1.0
-learning_rate: 0.1
-discount_factor: 0.99
+learning_rate: 0.2
+discount_factor: 0.9
 e_decay_limit: 0.05
 e_decay_rate: 0.01
 

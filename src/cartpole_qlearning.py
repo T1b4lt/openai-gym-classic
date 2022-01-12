@@ -3,7 +3,7 @@ import yaml
 import gym
 from agents.q_agent import QAgent
 from utils import utils
-from utils.discretizator import Discretizator
+from utils.kbins_discretizator import KBinsDiscretizator
 
 
 def main(args):
@@ -40,8 +40,8 @@ def main(args):
     actions_dict = {0: 'Left', 1: 'Right'}
     hist = {}
 
-    discretizator = Discretizator(
-        env.observation_space.low, env.observation_space.high, bins_array=[BINS_1, BINS_2, BINS_3, BINS_4])
+    discretizator = KBinsDiscretizator(
+        env.observation_space.low, env.observation_space.high, bins_array=[BINS_1, BINS_2, BINS_3, BINS_4], encode='ordinal', strategy='uniform')
 
     agent = QAgent(discretizator.get_n_states(), env.action_space, exploration_ratio=EXPLORATION_RATIO,
                    learning_rate=LEARNING_RATE, discount_factor=DISCOUNT_FACTOR, e_decay_limit=E_DECAY_LIMIT, e_decay_rate=E_DECAY_RATE)
