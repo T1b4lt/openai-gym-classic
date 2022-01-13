@@ -26,10 +26,12 @@ class QAgent:
             random_values = np.random.uniform(
                 low=0, high=1, size=(1, self.actions.n))/1000
             action = np.argmax(self.qtable[state]+random_values)
+        return action
+
+    def greedy_decay(self):
         # e-greedy decay
         if self.exploration_ratio > self.e_decay_limit:
             self.exploration_ratio -= self.e_decay_rate
-        return action
 
     def update_qtable(self, state, action, reward, next_state, done):
         # Update Q-table if not final state

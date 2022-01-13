@@ -68,6 +68,7 @@ def main(args):
             state = next_state
             if done:
                 break
+        agent.greedy_decay()
         if i_episode % 10 == 0:
             print('Episode: {}\t\tReward: {}\t\tSteps: {}\t\tEpsilon: {:.2f}\t\tInfo: {}'.format(
                 i_episode, reward_counter, t+1, agent.exploration_ratio, info))

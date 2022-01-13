@@ -12,7 +12,7 @@ exploration_ratio: 1.0
 learning_rate: 0.2
 discount_factor: 0.9
 e_decay_limit: 0.05
-e_decay_rate: 0.01
+e_decay_rate: 0.001
 
 # MISC
 render: False
