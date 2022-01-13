@@ -69,8 +69,8 @@ def main(args):
             if done:
                 break
         if i_episode % 10 == 0:
-            print('Episode: {} Reward: {} Steps Taken: {} Info: {}'.format(
-                i_episode, reward_counter, t+1, info))
+            print('Episode: {}\t\tReward: {}\t\tSteps: {}\t\tEpsilon: {:.2f}\t\tInfo: {}'.format(
+                i_episode, reward_counter, t+1, agent.exploration_ratio, info))
         hist[i_episode] = {'reward': reward_counter, 'steps': t+1}
         if RENDER:
             print("############### End Episode", i_episode, "###############")
